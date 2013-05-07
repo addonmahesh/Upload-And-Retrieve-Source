@@ -1,0 +1,180 @@
+package com.example.vladimir;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+public class Vladimir extends Activity {
+  ListView lv;
+	LazyAdapter adapter;
+	public int[] imageview1 = { R.drawable.side_line_3, R.drawable.side_line_2,
+			R.drawable.side_line_1, R.drawable.side_line_5,
+			R.drawable.side_line_4 };
+	public String[] data = { "Forex Signals", "Investor Style Signals",
+			"Stocks Signals", "Live Trading Room Signals", "Harmonic Signals" };
+	ImageView image2, image3, ivmenu, ivsearch, ivhome, ivmember;
+	LinearLayout blog, market, review, newsletter, youtube, about;
+	RelativeLayout rl;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.vladimir);
+		lv = (ListView) findViewById(R.id.listView);
+		ivmenu = (ImageView) findViewById(R.id.ivmenu);
+		ivsearch = (ImageView) findViewById(R.id.ivsearch);
+		ivhome = (ImageView) findViewById(R.id.ivhome);
+		ivmember = (ImageView) findViewById(R.id.ivmemberonly);
+		blog = (LinearLayout) findViewById(R.id.bloglayout);
+		about = (LinearLayout) findViewById(R.id.aboutlayout);
+		market = (LinearLayout) findViewById(R.id.marketlayout);
+		review = (LinearLayout) findViewById(R.id.reviewlayout);
+		newsletter = (LinearLayout) findViewById(R.id.newslayout);
+		youtube = (LinearLayout) findViewById(R.id.youtubelayout);
+
+		adapter = new LazyAdapter(Vladimir.this, data, imageview1);
+		adapter.notifyDataSetChanged();
+		lv.setAdapter(adapter);
+
+		ivhome.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "home",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		ivmenu.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "menu",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		ivsearch.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "search",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		blog.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "blog",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		market.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "market",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		review.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "review",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		newsletter.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "news",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		youtube.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "youtube",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		about.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "about",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		ivmember.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				EditText txtname,txtemail;
+				final Dialog dialog = new Dialog(Vladimir.this);
+				dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);				
+				dialog.setContentView(R.layout.custom_dialog);
+				txtname = (EditText) findViewById(R.id.txtname);
+				txtemail = (EditText) findViewById(R.id.txtemail);
+				dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+				dialog.show();
+			}
+		});
+
+		/*
+		 * lv.setOnItemSelectedListener(new OnItemSelectedListener() {
+		 * 
+		 * public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+		 * long arg3) { // TODO Auto-generated method stub image2 = (ImageView)
+		 * arg1.findViewById(R.id.imageView2); image3 = (ImageView)
+		 * arg1.findViewById(R.id.ivrightarrow); rl = (RelativeLayout)
+		 * arg1.findViewById(R.id.listviewlayout);
+		 * image2.setImageResource(R.drawable.signals_selected);
+		 * image3.setImageResource(R.drawable.right_arrow_selected);
+		 * rl.setBackgroundResource(R.drawable.row_bg_selected);
+		 * Toast.makeText(getApplicationContext(), toString().valueOf(arg2),
+		 * Toast.LENGTH_SHORT).show(); }
+		 * 
+		 * public void onNothingSelected(AdapterView<?> arg0) { // TODO
+		 * Auto-generated method stub image2 = (ImageView)
+		 * findViewById(R.id.imageView2); image3 = (ImageView)
+		 * findViewById(R.id.ivrightarrow); rl = (RelativeLayout)
+		 * findViewById(R.id.listviewlayout);
+		 * image2.setImageResource(R.drawable.signals);
+		 * image3.setImageResource(R.drawable.right_arrow);
+		 * rl.setBackgroundResource(R.drawable.row_bg); } });
+		 */
+
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				image2 = (ImageView) arg1.findViewById(R.id.imageView2);
+				image3 = (ImageView) arg1.findViewById(R.id.ivrightarrow);
+				rl = (RelativeLayout) arg1.findViewById(R.id.listviewlayout);
+				image2.setImageResource(R.drawable.signals_selected);
+				image3.setImageResource(R.drawable.right_arrow_selected);
+				rl.setBackgroundResource(R.drawable.row_bg_selected);
+				Toast.makeText(getApplicationContext(),
+						toString().valueOf(arg2), Toast.LENGTH_SHORT).show();
+			}
+
+		});
+	}
+
+}
